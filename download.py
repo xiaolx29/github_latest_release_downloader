@@ -19,6 +19,6 @@ owner = input('owner:')
 repo = input('repo:')
 github_url = 'https://api.github.com/repos/{}/{}/releases/latest'.format(owner, repo)
 print('Trying to get response from github')
-github_response = re_attempt.run(get_response, url = github_url, timeout = 10)
-
-print(github_response[0])
+success, github_response = re_attempt.run(get_response, url = github_url, timeout = 10)
+if success:
+    print(github_response.json()['assets'])
