@@ -31,13 +31,13 @@ retries = config.getint(section = 'General', option = 'RetryTimes')
 timeout = config.getfloat(section = 'General', option = 'Timeout')
 
 re_attempt = ReAttempt(
-    max_retries=3,
-    acceptable_exception=(
+    max_retries = 3,
+    acceptable_exception = (
         requests.exceptions.Timeout, 
         requests.exceptions.RequestException
     ),
-    on_success = lambda retry_index, result: tqdm.write('Attempt {}: Result: {}.'.format(retry_index + 1, result)),
-    on_exception = lambda retry_index, exception: tqdm.write('Attempt {}: Exception: {}{}'.format(retry_index + 1, type(exception), exception))
+    on_success = lambda retry_index, max_retries, result: tqdm.write('Attempt {}/{}: Result: {}.'.format(retry_index + 1, max_retries, result)),
+    on_exception = lambda retry_index, max_retries, exception: tqdm.write('Attempt {}/{}: Exception: {}{}'.format(retry_index + 1, max_retries, type(exception), exception))
     )
 
 # list of programs user choose to download
