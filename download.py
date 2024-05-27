@@ -63,7 +63,7 @@ for name in program_names:
             tqdm.write('Can not find download link that matches the pattern {}.'.format(download_url_pattern))
     
     tqdm.write('Trying to download {} at {}.'.format(name, download_url))
-    success, download_response = re_attempt.fun(func = get_response, url = download_url, headers = headers, timeout = timeout, stream = True)
+    success, download_response = re_attempt.run(func = get_response, url = download_url, headers = headers, timeout = timeout, stream = True)
     if success:  # can download
         save_path = config.get(section = name, option = 'SavePath')
         download_with_progress(download_response, os.path.join(save_path, download_url.split('/')[-1]))
