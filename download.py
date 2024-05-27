@@ -68,5 +68,5 @@ for name in program_names:
         save_path = config.get(section = name, option = 'SavePath')
         download_with_progress(download_response, os.path.join(save_path, download_url.split('/')[-1]))
     else:  # can not get response
-        tqdm.write('Can not download {}.'.format(name, download_url))
+        tqdm.write('Can not download {} at {}.'.format(name, download_url))
 
